@@ -4,7 +4,7 @@
 	
 	w.EvObj={
 		bind:function(ev,fn,area,first){
-			if(!fn || Object.prototype.toString.call(fn)!=='[object Function]') return this;
+			if(!fn || typeof fn !== 'function') return this;
 			if(!evObj[ev]){
 				evObj[ev]=[];
 			}
