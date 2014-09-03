@@ -3,7 +3,7 @@
 	var evObj={};
 	
 	w.EvObj={
-		bind:function(ev,fn,area,first){
+		bind:function(ev,fn,area,first){//绑定事件监听
 			if(!fn || typeof fn !== 'function') return this;
 			if(!evObj[ev]){
 				evObj[ev]=[];
@@ -15,13 +15,13 @@
 			}
 			return this;
 		},
-		norepeat:function(ev,fn,area,first){
+		norepeat:function(ev,fn,area,first){//限制该类型事件只可绑定本次监听
 			if(!evObj[ev]){
 				EvObj.bind(ev,fn,area,first);
 			}
 			return this;
 		},
-		unbind:function(ev,fn,area){
+		unbind:function(ev,fn,area){//解除事件监听
 			if(evObj[ev] && Object.prototype.toString.call(evObj[ev])==='[object Array]'){
 				if(fn){
 					for(var i=evObj[ev].length;i--;){
@@ -42,7 +42,7 @@
 			}
 			return this;
 		},
-		once:function(ev,fn,area,first){
+		once:function(ev,fn,area,first){//本次监听执行一次后立即解除绑定
 			var _self=this;
 			var tmpfn = function(){
 				fn.apply(this,arguments);
@@ -50,7 +50,7 @@
 			};
 			return this.bind(ev,tmpfn,area,first);
 		},
-		fire:function(ev,area){
+		fire:function(ev,area){//触发事件
 			var args=[];
 			for(var i=2,l=arguments.length;i<l;i++){
 				args.push(arguments[i]);
